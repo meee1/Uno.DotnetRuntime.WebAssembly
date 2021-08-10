@@ -239,7 +239,7 @@ jobs:
         sed -i 's/<assembly fullname="System.Runtime.Serialization.Formatters">/<assembly fullname="System.Runtime.Serialization.Formattersinvalid">/' src/libraries/System.Runtime.Serialization.Formatters/src/ILLink/ILLink.Substitutions.NonBrowser.xml
         cat src/libraries/System.Runtime.Serialization.Formatters/src/ILLink/ILLink.Substitutions.NonBrowser.xml
         
-        sed -i 's/TargetsMobile/TargetsMobileinvalid/' src/libraries/System.Runtime.Serialization.Formatters/src/System.Runtime.Serialization.Formatters.csproj
+        sed -i 's/TargetsBrowser/TargetsBrowserinvalid/' src/libraries/System.Runtime.Serialization.Formatters/src/System.Runtime.Serialization.Formatters.csproj
         cat src/libraries/System.Runtime.Serialization.Formatters/src/System.Runtime.Serialization.Formatters.csproj
         git add .
         git commit -m "apply patches"
