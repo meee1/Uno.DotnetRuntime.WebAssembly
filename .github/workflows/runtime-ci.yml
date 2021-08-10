@@ -233,7 +233,8 @@ jobs:
         git config --global user.email "ci@platform.uno"
         git config --global user.name "Uno Platform CI"
         sed -i 's/throw new NotSupportedException(SR.BinaryFormatter_SerializationDisallowed);/var st433 = new NotSupportedException(SR.BinaryFormatter_SerializationDisallowed);/' src/libraries/System.Private.CoreLib/src/System/Resources/ResourceReader.Core.cs
-       
+        sed -i 's~\s+<type fullname="System.Resources.ResourceReader">.*\n.*<method signature="System.Boolean InitializeBinaryFormatter\(\)" body="stub" value="false" />.*\n.*</type>~~g' src/mono/System.Private.CoreLib/src/ILLink/ILLink.Substitutions.wasm.xml
+        cat src/mono/System.Private.CoreLib/src/ILLink/ILLink.Substitutions.wasm.xml
         git add .
         git commit -m "apply patches"
         echo dotnet/runtime patched SHA1: `git rev-parse HEAD`
