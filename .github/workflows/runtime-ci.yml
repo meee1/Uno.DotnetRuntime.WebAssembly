@@ -236,8 +236,8 @@ jobs:
         cat src/libraries/System.Private.CoreLib/src/System/Resources/ResourceReader.Core.cs
         sed -i 's/<type fullname="System.Resources.ResourceReader">/<type fullname="System.Resources.ResourceReaderinvalid">/' src/mono/System.Private.CoreLib/src/ILLink/ILLink.Substitutions.wasm.xml
         cat src/mono/System.Private.CoreLib/src/ILLink/ILLink.Substitutions.wasm.xml
-        sed -i 's/<assembly fullname="System.Runtime.Serialization.Formatters">/<assembly fullname="System.Runtime.Serialization.Formattersinvalid">/' src/libraries/System.Runtime.Serialization.Formatters/src/ILLink/ILLink.Substitutions.NonMobile.xml
-        cat src/libraries/System.Runtime.Serialization.Formatters/src/ILLink/ILLink.Substitutions.NonMobile.xml
+        sed -i 's/<assembly fullname="System.Runtime.Serialization.Formatters">/<assembly fullname="System.Runtime.Serialization.Formattersinvalid">/' src/libraries/System.Runtime.Serialization.Formatters/src/ILLink/ILLink.Substitutions.NonBrowser.xml
+        cat src/libraries/System.Runtime.Serialization.Formatters/src/ILLink/ILLink.Substitutions.NonBrowser.xml
         git add .
         git commit -m "apply patches"
         echo dotnet/runtime patched SHA1: `git rev-parse HEAD`
