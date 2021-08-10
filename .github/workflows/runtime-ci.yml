@@ -24,7 +24,7 @@ jobs:
   ## Build Job
   ##
   build_windows_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    if: false
     runs-on: windows-latest
 
     strategy:
@@ -232,6 +232,8 @@ jobs:
         git apply ../patches/dbg-proxy-net5.patch
         git config --global user.email "ci@platform.uno"
         git config --global user.name "Uno Platform CI"
+        sed -i 's/throw new NotSupportedException(SR.NotSupported_ResourceObjectSerialization);/var ex = SR.NotSupported_ResourceObjectSerialization;/' src/libraries/System.Private.CoreLib/src/System/Resources/ResourceReader.Core.cs
+       
         git add .
         git commit -m "apply patches"
         echo dotnet/runtime patched SHA1: `git rev-parse HEAD`
@@ -311,14 +313,4 @@ jobs:
       uses: actions/download-artifact@v2
       with:
           name: wasm
-
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_STORAGE_CREDENTIALS }}
-
-    - name: Upload to blob storage
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-            az storage blob upload-batch --account-name unowasmbootstrap -d 'runtime' -s .
 
